@@ -1,42 +1,131 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+
+    <title>@ViewBag.Title - Horus</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" href="~/TEMP/theme/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/TEMP/theme/assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/TEMP/theme/assets/vendor/linearicons/style.css">
+    <link rel="stylesheet" href="~/TEMP/theme/assets/vendor/metisMenu/metisMenu.css">
+    <link rel="stylesheet" href="~/TEMP/theme/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="~/TEMP/theme/assets/css/main.css">
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="apple-touch-icon" sizes="76x76" href="~/TEMP/theme/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/TEMP/theme/assets/img/favicon.png">
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <!-- WRAPPER -->
+    <div id="wrapper">
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-btn">
+                    <button type="button" class="btn-toggle-offcanvas"><i class="lnr lnr-menu"></i></button>
+                </div>
+                <!-- logo -->
+                <div class="navbar-brand">
+                    <img src="~/Media/Images/horus.png" class="img-responsive">
+                </div>
+                <!-- end logo -->
+                <div class="navbar-right">
+
+                    <!-- navbar menu -->
+                    <div id="navbar-menu">
+                        <ul class="nav navbar-nav">
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+                                    <i class="lnr lnr-cog"></i>
+                                </a>
+                                <ul class="dropdown-menu user-menu menu-icon">
+                                    <li class="menu-heading">AJUSTES DE CUENTA</li>
+                                    <li>@Html.ActionLink("Salir", "Index", "Home", null, new { @class = "fa fa-fw fa-edit" })</li>
+                                    <li>@Html.ActionLink("Terminos y condiciones", "Index", "Terms", null, new { @class = "fa fa-fw fa-edit" })</li>
+                                    @*<li><a href="#"><i class="fa fa-fw fa-lock"></i> <span>Terminos y condiciones</span></a></li>*@
+                                    @*<li class="menu-heading">FACTURACION</li>
+                                        <li><a href="#"><i class="fa fa-fw fa-credit-card"></i> <span>Pagos</span></a></li>
+                                        <li><a href="#"><i class="fa fa-fw fa-refresh"></i> <span>Rembolsos</span></a></li>*@
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- end navbar menu -->
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+        </nav>
+        <!-- END NAVBAR -->
+        <!-- LEFT SIDEBAR -->
+        <div id="left-sidebar" class="sidebar">
+            <button type="button" class="btn btn-xs btn-link btn-toggle-fullwidth">
+                <span class="sr-only">Toggle Fullwidth</span>
+                <i class="fa fa-angle-left"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <div class="user-account">
+                    <img src="~/Media/Images/HorusEye.png" class="img-responsive img-circle user-photo">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle user-name" data-toggle="dropdown">Hola, <strong>Admin</strong></i></a>
+
+                    </div>
+                </div>
+                <nav id="left-sidebar-nav" class="sidebar-nav">
+                    <ul id="main-menu" class="metismenu">
+                        <li class=""><a href="index.html"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                        <li class="">
+                            <a href="#uiElements" class="has-arrow" aria-expanded="false"><i class="lnr lnr-magic-wand"></i> <span>Menu</span></a>
+                            <ul aria-expanded="true">
+                                <li class="">  @Html.ActionLink("Inicio", "Index", "Home")</li>
+                                <li class="">@Html.ActionLink("Eventos", "Index", "Events")</li>
+                                <li class=""> @Html.ActionLink("Paquetes", "Index", "Packages")</li>
+                                <li class=""> @Html.ActionLink("Trabajadores", "Index", "Staffs")</li>
+                                <li class=""> @Html.ActionLink("Clientes", "Index", "Clients")</li>
+                                <li class=""> @Html.ActionLink("Usuarios", "Index", "Users")</li>
+                                <li class=""> @Html.ActionLink("Register", "Index", "Register")</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <!-- END LEFT SIDEBAR -->
+        <!-- MAIN CONTENT  RENDER -->
+        <div id="main-content">
+            <div class="container-fluid">
+
+
+                @RenderBody()
+
+
+            </div>
+        </div>
+        <!-- END MAIN CONTENT -->
+        <div class="clearfix"></div>
+        <footer class="row">
+            <!-- Copyright-->
+
+            <span>© AlejanKorps 2018</span>
+
         </footer>
     </div>
+    <!-- END WRAPPER -->
+    <!-- Javascript -->
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script src="~/TEMP/theme/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/TEMP/theme/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/TEMP/theme/assets/vendor/metisMenu/metisMenu.js"></script>
+    <script src="~/TEMP/theme/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/TEMP/theme/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/TEMP/theme/assets/scripts/common.js"></script>
+
+
 </body>
+
 </html>

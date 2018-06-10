@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ProjectFinalHorus.Models.Event>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time_start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time_end)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.assistance_lock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.assistance_limit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.assistance_count)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.time_start)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.time_end)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.assistance_lock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.assistance_limit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.assistance_count)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

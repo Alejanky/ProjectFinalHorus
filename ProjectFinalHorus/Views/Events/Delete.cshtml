@@ -1,0 +1,81 @@
+﻿@model ProjectFinalHorus.Models.Event
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time_start)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time_start)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time_end)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time_end)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.assistance_lock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.assistance_lock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.assistance_limit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.assistance_limit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.assistance_count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.assistance_count)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

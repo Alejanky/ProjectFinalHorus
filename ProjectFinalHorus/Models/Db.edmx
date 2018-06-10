@@ -1,0 +1,738 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProjectFinalHorus20180610020451_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="birth_date" Type="date" Nullable="false" />
+          <Property Name="nationality" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="12" />
+        </EntityType>
+        <EntityType Name="Clients_Packages">
+          <Key>
+            <PropertyRef Name="id_client" />
+            <PropertyRef Name="id_domain" />
+          </Key>
+          <Property Name="id_client" Type="int" Nullable="false" />
+          <Property Name="id_domain" Type="int" Nullable="false" />
+          <Property Name="id_package" Type="int" Nullable="false" />
+          <Property Name="payment_method" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="timestamp" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Domains">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="thumbnail" Type="varbinary(max)" />
+          <Property Name="country" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="time_start" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="time_end" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="description" Type="varchar(max)" Nullable="false" />
+          <Property Name="assistance_lock" Type="bit" Nullable="false" />
+          <Property Name="assistance_limit" Type="int" Nullable="false" />
+          <Property Name="assistance_count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events_Clients">
+          <Key>
+            <PropertyRef Name="id_event" />
+            <PropertyRef Name="id_client" />
+          </Key>
+          <Property Name="id_event" Type="int" Nullable="false" />
+          <Property Name="id_client" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gifts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Packages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_domain" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="restrict_to" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Packages_Events">
+          <Key>
+            <PropertyRef Name="id_package" />
+            <PropertyRef Name="id_event" />
+          </Key>
+          <Property Name="id_package" Type="int" Nullable="false" />
+          <Property Name="id_event" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="display_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="12" />
+        </EntityType>
+        <EntityType Name="Staff_Domains">
+          <Key>
+            <PropertyRef Name="id_staff" />
+            <PropertyRef Name="id_domain" />
+          </Key>
+          <Property Name="id_staff" Type="int" Nullable="false" />
+          <Property Name="id_domain" Type="int" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="birth_date" Type="date" Nullable="false" />
+          <Property Name="nationality" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="12" />
+        </EntityType>
+        <Association Name="FK__Domains__id_user__66603565">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Domains" Type="Self.Domains" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Domains">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events_Cl__id_cl__6754599E">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Events_Clients" Type="Self.Events_Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Events_Clients">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events_Cl__id_ev__68487DD7">
+          <End Role="Events" Type="Self.Events" Multiplicity="1" />
+          <End Role="Events_Clients" Type="Self.Events_Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Events_Clients">
+              <PropertyRef Name="id_event" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Packages___id_ev__6A30C649">
+          <End Role="Events" Type="Self.Events" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Packages_Events" Type="Self.Packages_Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Packages_Events">
+              <PropertyRef Name="id_event" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Packages___id_pa__6B24EA82">
+          <End Role="Packages" Type="Self.Packages" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Packages_Events" Type="Self.Packages_Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Packages">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Packages_Events">
+              <PropertyRef Name="id_package" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Packages__id_dom__693CA210">
+          <End Role="Domains" Type="Self.Domains" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Packages" Type="Self.Packages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Domains">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Packages">
+              <PropertyRef Name="id_domain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff_Dom__id_do__6C190EBB">
+          <End Role="Domains" Type="Self.Domains" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Staff_Domains" Type="Self.Staff_Domains" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Domains">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Staff_Domains">
+              <PropertyRef Name="id_domain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff_Dom__id_st__6D0D32F4">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Staff_Domains" Type="Self.Staff_Domains" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Staff_Domains">
+              <PropertyRef Name="id_staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_Packages_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Clients_Packages" Type="Self.Clients_Packages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Clients_Packages">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_Packages_Domains">
+          <End Role="Domains" Type="Self.Domains" Multiplicity="1" />
+          <End Role="Clients_Packages" Type="Self.Clients_Packages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Domains">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Clients_Packages">
+              <PropertyRef Name="id_domain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_Packages_Packages">
+          <End Role="Packages" Type="Self.Packages" Multiplicity="1" />
+          <End Role="Clients_Packages" Type="Self.Clients_Packages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Packages">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Clients_Packages">
+              <PropertyRef Name="id_package" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjectFinalHorus20180610020451_dbModelStoreContainer">
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients_Packages" EntityType="Self.Clients_Packages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Domains" EntityType="Self.Domains" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events_Clients" EntityType="Self.Events_Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gifts" EntityType="Self.Gifts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Packages" EntityType="Self.Packages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Packages_Events" EntityType="Self.Packages_Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff_Domains" EntityType="Self.Staff_Domains" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Domains__id_user__66603565" Association="Self.FK__Domains__id_user__66603565">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Domains" EntitySet="Domains" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events_Cl__id_cl__6754599E" Association="Self.FK__Events_Cl__id_cl__6754599E">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Events_Clients" EntitySet="Events_Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events_Cl__id_ev__68487DD7" Association="Self.FK__Events_Cl__id_ev__68487DD7">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Events_Clients" EntitySet="Events_Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Packages___id_ev__6A30C649" Association="Self.FK__Packages___id_ev__6A30C649">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Packages_Events" EntitySet="Packages_Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Packages___id_pa__6B24EA82" Association="Self.FK__Packages___id_pa__6B24EA82">
+            <End Role="Packages" EntitySet="Packages" />
+            <End Role="Packages_Events" EntitySet="Packages_Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Packages__id_dom__693CA210" Association="Self.FK__Packages__id_dom__693CA210">
+            <End Role="Domains" EntitySet="Domains" />
+            <End Role="Packages" EntitySet="Packages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff_Dom__id_do__6C190EBB" Association="Self.FK__Staff_Dom__id_do__6C190EBB">
+            <End Role="Domains" EntitySet="Domains" />
+            <End Role="Staff_Domains" EntitySet="Staff_Domains" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff_Dom__id_st__6D0D32F4" Association="Self.FK__Staff_Dom__id_st__6D0D32F4">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Staff_Domains" EntitySet="Staff_Domains" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_Packages_Clients" Association="Self.FK_Clients_Packages_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Clients_Packages" EntitySet="Clients_Packages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_Packages_Domains" Association="Self.FK_Clients_Packages_Domains">
+            <End Role="Domains" EntitySet="Domains" />
+            <End Role="Clients_Packages" EntitySet="Clients_Packages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_Packages_Packages" Association="Self.FK_Clients_Packages_Packages">
+            <End Role="Packages" EntitySet="Packages" />
+            <End Role="Clients_Packages" EntitySet="Clients_Packages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjectFinalHorus20180610020451_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="birth_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="nationality" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Clients_Packages" Relationship="Self.FK_Clients_Packages_Clients" FromRole="Clients" ToRole="Clients_Packages" />
+          <NavigationProperty Name="Events" Relationship="Self.Events_Clients" FromRole="Clients" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="Clients_Packages">
+          <Key>
+            <PropertyRef Name="id_client" />
+            <PropertyRef Name="id_domain" />
+          </Key>
+          <Property Name="id_client" Type="Int32" Nullable="false" />
+          <Property Name="id_domain" Type="Int32" Nullable="false" />
+          <Property Name="id_package" Type="Int32" Nullable="false" />
+          <Property Name="payment_method" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Clients_Packages_Clients" FromRole="Clients_Packages" ToRole="Clients" />
+          <NavigationProperty Name="Domain" Relationship="Self.FK_Clients_Packages_Domains" FromRole="Clients_Packages" ToRole="Domains" />
+          <NavigationProperty Name="Package" Relationship="Self.FK_Clients_Packages_Packages" FromRole="Clients_Packages" ToRole="Packages" />
+        </EntityType>
+        <EntityType Name="Domain">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="thumbnail" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="country" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Clients_Packages" Relationship="Self.FK_Clients_Packages_Domains" FromRole="Domains" ToRole="Clients_Packages" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Domains__id_user__66603565" FromRole="Domains" ToRole="Users" />
+          <NavigationProperty Name="Packages" Relationship="Self.FK__Packages__id_dom__693CA210" FromRole="Domains" ToRole="Packages" />
+          <NavigationProperty Name="Staff_Domains" Relationship="Self.FK__Staff_Dom__id_do__6C190EBB" FromRole="Domains" ToRole="Staff_Domains" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="time_start" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="time_end" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="assistance_lock" Type="Boolean" Nullable="false" />
+          <Property Name="assistance_limit" Type="Int32" Nullable="false" />
+          <Property Name="assistance_count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="Self.Events_Clients" FromRole="Events" ToRole="Clients" />
+          <NavigationProperty Name="Packages" Relationship="Self.Packages_Events" FromRole="Events" ToRole="Packages" />
+        </EntityType>
+        <EntityType Name="Gift">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Package">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_domain" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="restrict_to" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Clients_Packages" Relationship="Self.FK_Clients_Packages_Packages" FromRole="Packages" ToRole="Clients_Packages" />
+          <NavigationProperty Name="Domain" Relationship="Self.FK__Packages__id_dom__693CA210" FromRole="Packages" ToRole="Domains" />
+          <NavigationProperty Name="Events" Relationship="Self.Packages_Events" FromRole="Packages" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="display_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Staff_Domains" Relationship="Self.FK__Staff_Dom__id_st__6D0D32F4" FromRole="Staff" ToRole="Staff_Domains" />
+        </EntityType>
+        <EntityType Name="Staff_Domains">
+          <Key>
+            <PropertyRef Name="id_staff" />
+            <PropertyRef Name="id_domain" />
+          </Key>
+          <Property Name="id_staff" Type="Int32" Nullable="false" />
+          <Property Name="id_domain" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Domain" Relationship="Self.FK__Staff_Dom__id_do__6C190EBB" FromRole="Staff_Domains" ToRole="Domains" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK__Staff_Dom__id_st__6D0D32F4" FromRole="Staff_Domains" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="birth_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="nationality" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Domains" Relationship="Self.FK__Domains__id_user__66603565" FromRole="Users" ToRole="Domains" />
+        </EntityType>
+        <Association Name="FK_Clients_Packages_Clients">
+          <End Role="Clients" Type="Self.Client" Multiplicity="1" />
+          <End Role="Clients_Packages" Type="Self.Clients_Packages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Clients_Packages">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_Packages_Domains">
+          <End Role="Domains" Type="Self.Domain" Multiplicity="1" />
+          <End Role="Clients_Packages" Type="Self.Clients_Packages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Domains">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Clients_Packages">
+              <PropertyRef Name="id_domain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_Packages_Packages">
+          <End Role="Packages" Type="Self.Package" Multiplicity="1" />
+          <End Role="Clients_Packages" Type="Self.Clients_Packages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Packages">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Clients_Packages">
+              <PropertyRef Name="id_package" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Domains__id_user__66603565">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Domains" Type="Self.Domain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Domains">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Packages__id_dom__693CA210">
+          <End Role="Domains" Type="Self.Domain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Packages" Type="Self.Package" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Domains">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Packages">
+              <PropertyRef Name="id_domain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff_Dom__id_do__6C190EBB">
+          <End Role="Domains" Type="Self.Domain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Staff_Domains" Type="Self.Staff_Domains" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Domains">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Staff_Domains">
+              <PropertyRef Name="id_domain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff_Dom__id_st__6D0D32F4">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Staff_Domains" Type="Self.Staff_Domains" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Staff_Domains">
+              <PropertyRef Name="id_staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Events_Clients">
+          <End Role="Clients" Type="Self.Client" Multiplicity="*" />
+          <End Role="Events" Type="Self.Event" Multiplicity="*" />
+        </Association>
+        <Association Name="Packages_Events">
+          <End Role="Events" Type="Self.Event" Multiplicity="*" />
+          <End Role="Packages" Type="Self.Package" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ProjectFinalHorus20180610020451_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Clients_Packages" EntityType="Self.Clients_Packages" />
+          <EntitySet Name="Domains" EntityType="Self.Domain" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="Gifts" EntityType="Self.Gift" />
+          <EntitySet Name="Packages" EntityType="Self.Package" />
+          <EntitySet Name="Staffs" EntityType="Self.Staff" />
+          <EntitySet Name="Staff_Domains" EntityType="Self.Staff_Domains" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Clients_Packages_Clients" Association="Self.FK_Clients_Packages_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Clients_Packages" EntitySet="Clients_Packages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_Packages_Domains" Association="Self.FK_Clients_Packages_Domains">
+            <End Role="Domains" EntitySet="Domains" />
+            <End Role="Clients_Packages" EntitySet="Clients_Packages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_Packages_Packages" Association="Self.FK_Clients_Packages_Packages">
+            <End Role="Packages" EntitySet="Packages" />
+            <End Role="Clients_Packages" EntitySet="Clients_Packages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Domains__id_user__66603565" Association="Self.FK__Domains__id_user__66603565">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Domains" EntitySet="Domains" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Packages__id_dom__693CA210" Association="Self.FK__Packages__id_dom__693CA210">
+            <End Role="Domains" EntitySet="Domains" />
+            <End Role="Packages" EntitySet="Packages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff_Dom__id_do__6C190EBB" Association="Self.FK__Staff_Dom__id_do__6C190EBB">
+            <End Role="Domains" EntitySet="Domains" />
+            <End Role="Staff_Domains" EntitySet="Staff_Domains" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff_Dom__id_st__6D0D32F4" Association="Self.FK__Staff_Dom__id_st__6D0D32F4">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Staff_Domains" EntitySet="Staff_Domains" />
+          </AssociationSet>
+          <AssociationSet Name="Events_Clients" Association="Self.Events_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="Packages_Events" Association="Self.Packages_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Packages" EntitySet="Packages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjectFinalHorus20180610020451_dbModelStoreContainer" CdmEntityContainer="ProjectFinalHorus20180610020451_dbEntities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="ProjectFinalHorus20180610020451_dbModel.Client">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients_Packages">
+            <EntityTypeMapping TypeName="ProjectFinalHorus20180610020451_dbModel.Clients_Packages">
+              <MappingFragment StoreEntitySet="Clients_Packages">
+                <ScalarProperty Name="id_client" ColumnName="id_client" />
+                <ScalarProperty Name="id_domain" ColumnName="id_domain" />
+                <ScalarProperty Name="id_package" ColumnName="id_package" />
+                <ScalarProperty Name="payment_method" ColumnName="payment_method" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Domains">
+            <EntityTypeMapping TypeName="ProjectFinalHorus20180610020451_dbModel.Domain">
+              <MappingFragment StoreEntitySet="Domains">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="ProjectFinalHorus20180610020451_dbModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="time_start" ColumnName="time_start" />
+                <ScalarProperty Name="time_end" ColumnName="time_end" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="assistance_lock" ColumnName="assistance_lock" />
+                <ScalarProperty Name="assistance_limit" ColumnName="assistance_limit" />
+                <ScalarProperty Name="assistance_count" ColumnName="assistance_count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gifts">
+            <EntityTypeMapping TypeName="ProjectFinalHorus20180610020451_dbModel.Gift">
+              <MappingFragment StoreEntitySet="Gifts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packages">
+            <EntityTypeMapping TypeName="ProjectFinalHorus20180610020451_dbModel.Package">
+              <MappingFragment StoreEntitySet="Packages">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_domain" ColumnName="id_domain" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="restrict_to" ColumnName="restrict_to" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="ProjectFinalHorus20180610020451_dbModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="display_name" ColumnName="display_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff_Domains">
+            <EntityTypeMapping TypeName="ProjectFinalHorus20180610020451_dbModel.Staff_Domains">
+              <MappingFragment StoreEntitySet="Staff_Domains">
+                <ScalarProperty Name="id_staff" ColumnName="id_staff" />
+                <ScalarProperty Name="id_domain" ColumnName="id_domain" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ProjectFinalHorus20180610020451_dbModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Events_Clients" TypeName="ProjectFinalHorus20180610020451_dbModel.Events_Clients" StoreEntitySet="Events_Clients">
+            <EndProperty Name="Clients">
+              <ScalarProperty Name="id" ColumnName="id_client" />
+            </EndProperty>
+            <EndProperty Name="Events">
+              <ScalarProperty Name="id" ColumnName="id_event" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Packages_Events" TypeName="ProjectFinalHorus20180610020451_dbModel.Packages_Events" StoreEntitySet="Packages_Events">
+            <EndProperty Name="Events">
+              <ScalarProperty Name="id" ColumnName="id_event" />
+            </EndProperty>
+            <EndProperty Name="Packages">
+              <ScalarProperty Name="id" ColumnName="id_package" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

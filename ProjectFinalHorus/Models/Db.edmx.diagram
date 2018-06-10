@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="96891bd2182b4dab8c6a419c83d4ce93" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjectFinalHorus20180610020451_dbModel.Client" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectFinalHorus20180610020451_dbModel.Clients_Packages" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectFinalHorus20180610020451_dbModel.Domain" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectFinalHorus20180610020451_dbModel.Event" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectFinalHorus20180610020451_dbModel.Gift" Width="1.5" PointX="7.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectFinalHorus20180610020451_dbModel.Package" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectFinalHorus20180610020451_dbModel.Staff" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectFinalHorus20180610020451_dbModel.Staff_Domains" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectFinalHorus20180610020451_dbModel.User" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="ProjectFinalHorus20180610020451_dbModel.FK_Clients_Packages_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectFinalHorus20180610020451_dbModel.FK_Clients_Packages_Domains" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectFinalHorus20180610020451_dbModel.FK_Clients_Packages_Packages" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectFinalHorus20180610020451_dbModel.FK__Domains__id_user__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectFinalHorus20180610020451_dbModel.FK__Packages__id_dom__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectFinalHorus20180610020451_dbModel.FK__Staff_Dom__id_do__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectFinalHorus20180610020451_dbModel.FK__Staff_Dom__id_st__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectFinalHorus20180610020451_dbModel.Events_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectFinalHorus20180610020451_dbModel.Packages_Events" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

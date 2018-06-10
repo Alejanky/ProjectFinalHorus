@@ -1,0 +1,75 @@
+﻿@model ProjectFinalHorus.Models.Event
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time_start)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time_start)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time_end)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time_end)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.assistance_lock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.assistance_lock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.assistance_limit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.assistance_limit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.assistance_count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.assistance_count)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

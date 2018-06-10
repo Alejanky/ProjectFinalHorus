@@ -88,6 +88,8 @@
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -150,9 +152,59 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\Clients_PackagesController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PackagesController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\StaffsController.cs" />
+    <Compile Include="Controllers\Staff_DomainsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Client.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Clients_Packages.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Db.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Db.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Db.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Db.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Db.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Domain.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Event.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Gift.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Staff.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Staff_Domains.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>Db.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -164,10 +216,31 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\Images\Avatar.png" />
+    <Content Include="Media\Images\bg.jpg" />
+    <Content Include="Media\Images\fondo.jpg" />
+    <Content Include="Media\Images\horus.png" />
+    <Content Include="Media\Images\HorusEye.png" />
+    <Content Include="Media\Images\logofacebook.png" />
+    <Content Include="Media\Images\logoinsta.png" />
+    <Content Include="Media\Images\logowhat.png" />
+    <Content Include="Media\Images\menu.svg" />
+    <Content Include="Media\Images\portada.jpg" />
+    <Content Include="Models\Db.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Db.edmx</DependentUpon>
+      <LastGenOutput>Db.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Db.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Db.edmx</DependentUpon>
+      <LastGenOutput>Db.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -191,6 +264,17 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <EntityDeploy Include="Models\Db.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Db.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Db.edmx.diagram">
+      <DependentUpon>Db.edmx</DependentUpon>
+    </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Properties\PublishProfiles\ProjectFinalHorus20180610020451 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -210,6 +294,265 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="TEMP\theme\assets\css\demo.css" />
+    <Content Include="TEMP\theme\assets\css\main.css" />
+    <Content Include="TEMP\theme\assets\img\apple-icon.png" />
+    <Content Include="TEMP\theme\assets\img\favicon.png" />
+    <Content Include="TEMP\theme\assets\img\klorofilpro.png" />
+    <Content Include="TEMP\theme\assets\img\logo-minimal.png" />
+    <Content Include="TEMP\theme\assets\img\logo.png" />
+    <Content Include="TEMP\theme\assets\img\uploaded-file.jpg" />
+    <Content Include="TEMP\theme\assets\img\user-small.png" />
+    <Content Include="TEMP\theme\assets\img\user.png" />
+    <Content Include="TEMP\theme\assets\scripts\common.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\bootstrap-datepicker.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\bootstrap-datepicker3.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\css\bootstrap-datepicker.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\css\bootstrap-datepicker.min.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\css\bootstrap-datepicker.standalone.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\css\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\css\bootstrap-datepicker3.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\css\bootstrap-datepicker3.min.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\css\bootstrap-datepicker3.standalone.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\css\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\js\bootstrap-datepicker.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.ar.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.az.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.bg.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.bs.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.ca.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.cs.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.cy.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.da.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.de.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.el.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.en-AU.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.en-GB.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.eo.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.es.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.et.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.eu.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.fa.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.fi.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.fo.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.fr-CH.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.fr.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.gl.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.he.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.hr.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.hu.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.hy.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.id.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.is.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.it-CH.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.it.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.ja.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.ka.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.kh.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.kk.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.ko.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.kr.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.lt.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.lv.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.me.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.mk.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.mn.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.ms.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.nb.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.nl-BE.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.nl.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.no.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.pl.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.pt-BR.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.pt.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.ro.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.rs-latin.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.rs.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.ru.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.sk.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.sl.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.sq.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.sr-latin.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.sr.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.sv.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.sw.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.th.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.tr.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.uk.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.vi.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.zh-CN.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-datepicker\locales\bootstrap-datepicker.zh-TW.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-markdown\bootstrap-markdown.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-markdown\bootstrap-markdown.min.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-multiselect\bootstrap-multiselect.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-multiselect\bootstrap-multiselect.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-progressbar\css\bootstrap-progressbar-3.3.4.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-progressbar\css\bootstrap-progressbar-3.3.4.min.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-progressbar\js\bootstrap-progressbar.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-progressbar\js\bootstrap-progressbar.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap\js\npm.js" />
+    <Content Include="TEMP\theme\assets\vendor\chartist-plugin-axistitle\chartist-plugin-axistitle.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\chartist-plugin-legend-latest\chartist-plugin-legend.js" />
+    <Content Include="TEMP\theme\assets\vendor\chartist-plugin-tooltip\chartist-plugin-tooltip.css" />
+    <Content Include="TEMP\theme\assets\vendor\chartist-plugin-tooltip\chartist-plugin-tooltip.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\chartist\css\chartist.css" />
+    <Content Include="TEMP\theme\assets\vendor\chartist\css\chartist.min.css" />
+    <Content Include="TEMP\theme\assets\vendor\chartist\js\chartist.js" />
+    <Content Include="TEMP\theme\assets\vendor\chartist\js\chartist.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\dropify\css\demo.css" />
+    <Content Include="TEMP\theme\assets\vendor\dropify\css\dropify.css" />
+    <Content Include="TEMP\theme\assets\vendor\dropify\css\dropify.min.css" />
+    <Content Include="TEMP\theme\assets\vendor\dropify\fonts\dropify.svg" />
+    <Content Include="TEMP\theme\assets\vendor\dropify\js\dropify.js" />
+    <Content Include="TEMP\theme\assets\vendor\dropify\js\dropify.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\font-awesome\css\font-awesome.css" />
+    <Content Include="TEMP\theme\assets\vendor\font-awesome\css\font-awesome.min.css" />
+    <Content Include="TEMP\theme\assets\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="TEMP\theme\assets\vendor\jquery-slimscroll\jquery.slimscroll.js" />
+    <Content Include="TEMP\theme\assets\vendor\jquery-slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\jquery-sparkline\js\jquery.sparkline.js" />
+    <Content Include="TEMP\theme\assets\vendor\jquery-sparkline\js\jquery.sparkline.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\jquery.maskedinput\jquery.maskedinput.js" />
+    <Content Include="TEMP\theme\assets\vendor\jquery.maskedinput\jquery.maskedinput.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\jquery\core.js" />
+    <Content Include="TEMP\theme\assets\vendor\jquery\jquery.js" />
+    <Content Include="TEMP\theme\assets\vendor\jquery\jquery.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\jquery\jquery.slim.js" />
+    <Content Include="TEMP\theme\assets\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\linearicons\fonts\Linearicons-Free.svg" />
+    <Content Include="TEMP\theme\assets\vendor\linearicons\style.css" />
+    <Content Include="TEMP\theme\assets\vendor\markdown\markdown.js" />
+    <Content Include="TEMP\theme\assets\vendor\metisMenu\metisMenu.css" />
+    <Content Include="TEMP\theme\assets\vendor\metisMenu\metisMenu.js" />
+    <Content Include="TEMP\theme\assets\vendor\parsleyjs\css\parsley.css" />
+    <Content Include="TEMP\theme\assets\vendor\parsleyjs\js\parsley.js" />
+    <Content Include="TEMP\theme\assets\vendor\parsleyjs\js\parsley.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-ar-AR.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-ar-AR.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-bg-BG.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-bg-BG.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-ca-ES.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-ca-ES.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-cs-CZ.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-cs-CZ.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-da-DK.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-da-DK.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-de-DE.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-de-DE.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-el-GR.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-el-GR.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-es-ES.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-es-ES.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-es-EU.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-es-EU.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-fa-IR.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-fa-IR.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-fi-FI.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-fi-FI.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-fr-FR.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-fr-FR.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-gl-ES.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-gl-ES.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-he-IL.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-he-IL.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-hr-HR.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-hr-HR.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-hu-HU.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-hu-HU.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-id-ID.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-id-ID.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-it-IT.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-it-IT.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-ja-JP.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-ja-JP.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-ko-KR.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-ko-KR.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-lt-LT.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-lt-LT.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-lt-LV.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-lt-LV.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-nb-NO.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-nb-NO.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-nl-NL.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-nl-NL.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-pl-PL.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-pl-PL.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-pt-BR.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-pt-BR.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-pt-PT.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-pt-PT.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-ro-RO.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-ro-RO.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-ru-RU.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-ru-RU.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-sk-SK.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-sk-SK.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-sl-SI.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-sl-SI.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-sr-RS-Latin.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-sr-RS-Latin.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-sr-RS.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-sr-RS.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-sv-SE.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-sv-SE.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-ta-IN.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-ta-IN.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-th-TH.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-th-TH.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-tr-TR.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-tr-TR.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-uk-UA.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-uk-UA.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-vi-VN.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-vi-VN.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-zh-CN.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-zh-CN.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-zh-TW.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-zh-TW.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\plugin\databasic\summernote-ext-databasic.css" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\plugin\databasic\summernote-ext-databasic.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\plugin\databasic\summernote-ext-databasic.min.css" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\plugin\databasic\summernote-ext-databasic.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\plugin\hello\summernote-ext-hello.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\plugin\hello\summernote-ext-hello.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\plugin\specialchars\summernote-ext-specialchars.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\plugin\specialchars\summernote-ext-specialchars.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\summernote.css" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\summernote.js" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\summernote.min.js" />
+    <Content Include="TEMP\theme\assets\vendor\to-markdown\to-markdown.js" />
+    <Content Include="TEMP\theme\assets\vendor\toastr\toastr.css" />
+    <Content Include="TEMP\theme\assets\vendor\toastr\toastr.js" />
+    <Content Include="TEMP\theme\assets\vendor\toastr\toastr.min.css" />
+    <Content Include="TEMP\theme\charts-chartist.html" />
+    <Content Include="TEMP\theme\charts-sparkline.html" />
+    <Content Include="TEMP\theme\forms-advanced.html" />
+    <Content Include="TEMP\theme\forms-basic.html" />
+    <Content Include="TEMP\theme\forms-dragdropupload.html" />
+    <Content Include="TEMP\theme\forms-texteditor.html" />
+    <Content Include="TEMP\theme\forms-validation.html" />
+    <Content Include="TEMP\theme\index.html" />
+    <Content Include="TEMP\theme\notifications.html" />
+    <Content Include="TEMP\theme\page-404.html" />
+    <Content Include="TEMP\theme\page-500.html" />
+    <Content Include="TEMP\theme\page-forgot-password.html" />
+    <Content Include="TEMP\theme\page-lockscreen.html" />
+    <Content Include="TEMP\theme\page-login.html" />
+    <Content Include="TEMP\theme\page-profile.html" />
+    <Content Include="TEMP\theme\page-register.html" />
+    <Content Include="TEMP\theme\typography.html" />
+    <Content Include="TEMP\theme\ui-bootstrap.html" />
+    <Content Include="TEMP\theme\ui-buttons.html" />
+    <Content Include="TEMP\theme\ui-icons.html" />
+    <Content Include="TEMP\theme\ui-tabs.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -219,10 +562,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -233,10 +573,94 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Staffs\Create.cshtml" />
+    <Content Include="Views\Staffs\Delete.cshtml" />
+    <Content Include="Views\Staffs\Details.cshtml" />
+    <Content Include="Views\Staffs\Edit.cshtml" />
+    <Content Include="Views\Staffs\Index.cshtml" />
+    <Content Include="Views\Staff_Domains\Create.cshtml" />
+    <Content Include="Views\Staff_Domains\Delete.cshtml" />
+    <Content Include="Views\Staff_Domains\Details.cshtml" />
+    <Content Include="Views\Staff_Domains\Edit.cshtml" />
+    <Content Include="Views\Staff_Domains\Index.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Clients\Create.cshtml" />
+    <Content Include="Views\Clients\Delete.cshtml" />
+    <Content Include="Views\Clients\Details.cshtml" />
+    <Content Include="Views\Clients\Edit.cshtml" />
+    <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\Clients_Packages\Create.cshtml" />
+    <Content Include="Views\Clients_Packages\Delete.cshtml" />
+    <Content Include="Views\Clients_Packages\Details.cshtml" />
+    <Content Include="Views\Clients_Packages\Edit.cshtml" />
+    <Content Include="Views\Clients_Packages\Index.cshtml" />
+    <Content Include="TEMP\theme\assets\css\demo.css.map" />
+    <Content Include="TEMP\theme\assets\css\main.css.map" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap-multiselect\bootstrap-multiselect.less" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="TEMP\theme\assets\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="TEMP\theme\assets\vendor\chartist\map\chartist.css.map" />
+    <Content Include="TEMP\theme\assets\vendor\chartist\map\chartist.min.js.map" />
+    <Content Include="TEMP\theme\assets\vendor\chartist\scss\chartist.scss" />
+    <Content Include="TEMP\theme\assets\vendor\dropify\fonts\dropify.eot" />
+    <Content Include="TEMP\theme\assets\vendor\dropify\fonts\dropify.ttf" />
+    <Content Include="TEMP\theme\assets\vendor\dropify\fonts\dropify.woff" />
+    <Content Include="TEMP\theme\assets\vendor\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="TEMP\theme\assets\vendor\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="TEMP\theme\assets\vendor\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="TEMP\theme\assets\vendor\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="TEMP\theme\assets\vendor\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="TEMP\theme\assets\vendor\jquery\jquery.min.map" />
+    <Content Include="TEMP\theme\assets\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="TEMP\theme\assets\vendor\linearicons\fonts\Linearicons-Free.eot" />
+    <Content Include="TEMP\theme\assets\vendor\linearicons\fonts\Linearicons-Free.ttf" />
+    <Content Include="TEMP\theme\assets\vendor\linearicons\fonts\Linearicons-Free.woff" />
+    <Content Include="TEMP\theme\assets\vendor\linearicons\fonts\Linearicons-Free.woff2" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\font\summernote.eot" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\font\summernote.ttf" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\font\summernote.woff" />
+    <Content Include="TEMP\theme\assets\vendor\summernote\lang\summernote-mn-MN" />
+    <Content Include="TEMP\theme\sass\base\_general.scss" />
+    <Content Include="TEMP\theme\sass\base\_variables.scss" />
+    <Content Include="TEMP\theme\sass\demo.scss" />
+    <Content Include="TEMP\theme\sass\main.scss" />
+    <Content Include="TEMP\theme\sass\mixins\_clearfix.scss" />
+    <Content Include="TEMP\theme\sass\mixins\_css3.scss" />
+    <Content Include="TEMP\theme\sass\mixins\_elements-color-custom.scss" />
+    <Content Include="TEMP\theme\sass\mixins\_responsive.scss" />
+    <Content Include="TEMP\theme\sass\pages\_page-errors.scss" />
+    <Content Include="TEMP\theme\sass\pages\_page-profile.scss" />
+    <Content Include="TEMP\theme\sass\partials\_authentication.scss" />
+    <Content Include="TEMP\theme\sass\partials\_buttons.scss" />
+    <Content Include="TEMP\theme\sass\partials\_charts.scss" />
+    <Content Include="TEMP\theme\sass\partials\_elements-bootstrap.scss" />
+    <Content Include="TEMP\theme\sass\partials\_elements.scss" />
+    <Content Include="TEMP\theme\sass\partials\_forms.scss" />
+    <Content Include="TEMP\theme\sass\partials\_helpers.scss" />
+    <Content Include="TEMP\theme\sass\partials\_layout.scss" />
+    <Content Include="TEMP\theme\sass\partials\_navigation.scss" />
+    <Content Include="TEMP\theme\sass\partials\_social-brands.scss" />
+    <Content Include="TEMP\theme\sass\partials\_typography.scss" />
+    <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Packages\Create.cshtml" />
+    <Content Include="Views\Packages\Delete.cshtml" />
+    <Content Include="Views\Packages\Details.cshtml" />
+    <Content Include="Views\Packages\Edit.cshtml" />
+    <Content Include="Views\Packages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -245,6 +669,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
