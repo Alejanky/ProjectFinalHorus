@@ -23,10 +23,11 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.phone)
-        </th>
+        </th><!--
         <th>
             @Html.DisplayNameFor(model => model.psswrd)
         </th>
+                 -->
         <th></th>
     </tr>
 
@@ -44,9 +45,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.phone)
         </td>
+        <!--
         <td>
             @Html.DisplayFor(modelItem => item.psswrd)
         </td>
+            -->
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.id }) |
             @Html.ActionLink("Detalles", "Details", new { id=item.id }) |
