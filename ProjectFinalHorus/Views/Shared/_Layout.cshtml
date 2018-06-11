@@ -48,11 +48,8 @@
                                 <ul class="dropdown-menu user-menu menu-icon">
                                     <li class="menu-heading">AJUSTES DE CUENTA</li>
                                     <li>@Html.ActionLink("Salir", "Index", "Home", null, new { @class = "fa fa-fw fa-edit" })</li>
-                                    <li>@Html.ActionLink("Terminos y condiciones", "Index", "Terms", null, new { @class = "fa fa-fw fa-edit" })</li>
-                                    @*<li><a href="#"><i class="fa fa-fw fa-lock"></i> <span>Terminos y condiciones</span></a></li>*@
-                                    @*<li class="menu-heading">FACTURACION</li>
-                                        <li><a href="#"><i class="fa fa-fw fa-credit-card"></i> <span>Pagos</span></a></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-refresh"></i> <span>Rembolsos</span></a></li>*@
+                                    <li>@Html.ActionLink("Terminos y condiciones", "Index", "Terminos", null, new { @class = "fa fa-fw fa-lock" })</li>
+                                   
                                 </ul>
                             </li>
                         </ul>
@@ -78,7 +75,6 @@
                 </div>
                 <nav id="left-sidebar-nav" class="sidebar-nav">
                     <ul id="main-menu" class="metismenu">
-                        <li class=""><a href="index.html"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                         <li class="">
                             <a href="#uiElements" class="has-arrow" aria-expanded="false"><i class="lnr lnr-magic-wand"></i> <span>Menu</span></a>
                             <ul aria-expanded="true">

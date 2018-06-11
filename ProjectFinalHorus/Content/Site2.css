@@ -1,0 +1,45 @@
+﻿
+@font-face {
+    font-family: Wingdings;
+}
+
+p.MsoNormal, li.MsoNormal, div.MsoNormal {
+    margin: 0in;
+    margin-bottom: .0001pt;
+    font-size: 12.0pt;
+    font-family: "Times New Roman";
+}
+
+p.MsoFooter, li.MsoFooter, div.MsoFooter {
+    margin: 0in;
+    margin-bottom: .0001pt;
+    font-size: 12.0pt;
+    font-family: "Times New Roman";
+}
+
+a:link, span.MsoHyperlink {
+    color: blue;
+    text-decoration: underline;
+}
+
+a:visited, span.MsoHyperlinkFollowed {
+    color: purple;
+    text-decoration: underline;
+}
+
+@page Section1 {
+    size: 595.3pt 841.9pt;
+    margin: 70.85pt 85.05pt 70.85pt 85.05pt;
+}
+
+div.Section1 {
+    page: Section1;
+}
+
+ol {
+    margin-bottom: 0in;
+}
+
+ul {
+    margin-bottom: 0in;
+}
