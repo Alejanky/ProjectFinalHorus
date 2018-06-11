@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -51,7 +52,14 @@ namespace ProjectFinalHorus.Controllers
             if (ModelState.IsValid)
             {
                 db.Clients.Add(client);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+
+                }
                 return RedirectToAction("Index");
             }
 
@@ -83,7 +91,14 @@ namespace ProjectFinalHorus.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(client).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+
+                }
                 return RedirectToAction("Index");
             }
             return View(client);
@@ -111,7 +126,14 @@ namespace ProjectFinalHorus.Controllers
         {
             Client client = db.Clients.Find(id);
             db.Clients.Remove(client);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+
+            }
             return RedirectToAction("Index");
         }
 

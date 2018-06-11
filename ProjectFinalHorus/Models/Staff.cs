@@ -25,6 +25,7 @@ namespace ProjectFinalHorus.Models
         public string display_name { get; set; }
         public string email { get; set; }
         public string phone { get; set; }
+        public string psswrd { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff_Domains> Staff_Domains { get; set; }

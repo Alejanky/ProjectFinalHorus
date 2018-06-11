@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -46,12 +47,19 @@ namespace ProjectFinalHorus.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,role,display_name,email,phone")] Staff staff)
+        public ActionResult Create([Bind(Include = "id,role,display_name,email,phone,psswrd")] Staff staff)
         {
             if (ModelState.IsValid)
             {
                 db.Staffs.Add(staff);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+
+                }
                 return RedirectToAction("Index");
             }
 
@@ -78,12 +86,19 @@ namespace ProjectFinalHorus.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,role,display_name,email,phone")] Staff staff)
+        public ActionResult Edit([Bind(Include = "id,role,display_name,email,phone,psswrd")] Staff staff)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(staff).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+
+                }
                 return RedirectToAction("Index");
             }
             return View(staff);
@@ -111,7 +126,14 @@ namespace ProjectFinalHorus.Controllers
         {
             Staff staff = db.Staffs.Find(id);
             db.Staffs.Remove(staff);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+
+            }
             return RedirectToAction("Index");
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -53,7 +54,14 @@ namespace ProjectFinalHorus.Controllers
             if (ModelState.IsValid)
             {
                 db.Packages.Add(package);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+
+                }
                 return RedirectToAction("Index");
             }
 
@@ -87,7 +95,14 @@ namespace ProjectFinalHorus.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(package).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.id_domain = new SelectList(db.Domains, "id", "name", package.id_domain);
@@ -116,7 +131,14 @@ namespace ProjectFinalHorus.Controllers
         {
             Package package = db.Packages.Find(id);
             db.Packages.Remove(package);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+
+            }
             return RedirectToAction("Index");
         }
 

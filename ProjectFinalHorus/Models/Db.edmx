@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProjectFinalHorus20180610020451_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProjectFinalHorus20180610020451_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="id" />
@@ -96,6 +96,7 @@
           <Property Name="display_name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="phone" Type="varchar" MaxLength="12" />
+          <Property Name="psswrd" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Staff_Domains">
           <Key>
@@ -117,6 +118,7 @@
           <Property Name="nationality" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="phone" Type="varchar" MaxLength="12" />
+          <Property Name="psswrd" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK__Domains__id_user__66603565">
           <End Role="Users" Type="Self.Users" Multiplicity="1">
@@ -319,8 +321,7 @@
             <End Role="Clients_Packages" EntitySet="Clients_Packages" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProjectFinalHorus20180610020451_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -414,6 +415,7 @@
           <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Staff_Domains" Relationship="Self.FK__Staff_Dom__id_st__6D0D32F4" FromRole="Staff" ToRole="Staff_Domains" />
+          <Property Name="psswrd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Staff_Domains">
           <Key>
@@ -438,6 +440,7 @@
           <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Domains" Relationship="Self.FK__Domains__id_user__66603565" FromRole="Users" ToRole="Domains" />
+          <Property Name="psswrd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Clients_Packages_Clients">
           <End Role="Clients" Type="Self.Client" Multiplicity="1" />
@@ -666,6 +669,7 @@
           <EntitySetMapping Name="Staffs">
             <EntityTypeMapping TypeName="ProjectFinalHorus20180610020451_dbModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="psswrd" ColumnName="psswrd" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="display_name" ColumnName="display_name" />
@@ -686,6 +690,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="ProjectFinalHorus20180610020451_dbModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="psswrd" ColumnName="psswrd" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />

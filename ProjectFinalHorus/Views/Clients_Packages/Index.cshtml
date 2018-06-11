@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<ProjectFinalHorus.Models.Clients_Packages>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cliente Paquetes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Cliente Paquetes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuava Cliente Paquetes", "Create")
 </p>
 <table class="table">
     <tr>
@@ -48,9 +48,9 @@
             @Html.DisplayFor(modelItem => item.Package.name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

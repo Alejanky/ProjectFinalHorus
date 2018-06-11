@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<ProjectFinalHorus.Models.Staff>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trabajadores";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Trabajadores</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo trabajador", "Create")
 </p>
 <table class="table">
     <tr>
@@ -23,6 +23,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.psswrd)
         </th>
         <th></th>
     </tr>
@@ -42,9 +45,12 @@
             @Html.DisplayFor(modelItem => item.phone)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.DisplayFor(modelItem => item.psswrd)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id })
         </td>
     </tr>
 }

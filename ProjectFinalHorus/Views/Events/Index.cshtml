@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<ProjectFinalHorus.Models.Event>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Eventos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Eventos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo Evento", "Create")
 </p>
 <table class="table">
     <tr>
@@ -60,9 +60,9 @@
             @Html.DisplayFor(modelItem => item.assistance_count)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id })
         </td>
     </tr>
 }

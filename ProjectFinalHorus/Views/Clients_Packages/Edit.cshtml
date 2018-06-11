@@ -1,11 +1,11 @@
 ﻿@model ProjectFinalHorus.Models.Clients_Packages
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Editar</h2>
 
 
 @using (Html.BeginForm())
@@ -13,7 +13,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Clients_Packages</h4>
+        <h4>Cliente Paquetes</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id_client)
@@ -53,7 +53,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Index")
 </div>
 
 @section Scripts {
